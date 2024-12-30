@@ -1,0 +1,27 @@
+{
+    "nodeModulesDir": "auto",
+    "compilerOptions": {
+        "strict": true,
+        "types": [
+            "./types/global.d.ts"
+        ]
+    },
+
+    "tasks": {
+        "start": "deno run --allow-sys --allow-net --allow-env --allow-read index.ts",
+        "compile": "deno compile --allow-sys --allow-net --allow-env --allow-read --output app index.ts"
+    },
+
+    "imports": {
+        "discord.js": "npm:discord.js",
+        "mongodb": "npm:mongodb",
+
+        "config": "./lib/config.ts",
+        "app": "./app/index.ts",
+        "mongo": "./lib/mongo.ts",
+
+        "discord/commands": "./app/commands/index.ts",
+
+        "lib/": "./lib/"
+    }
+}
