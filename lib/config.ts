@@ -1,8 +1,5 @@
-const loadConfig = async () => {
-    const { default: Config } = await import(`../config.ts`)
-    return Config
-}
+import fs from 'node:fs'
 
-const config = await loadConfig()
+const config: Config = JSON.parse(fs.readFileSync('./config.json', 'utf8'))
 
 export default config

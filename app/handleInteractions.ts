@@ -1,5 +1,9 @@
 import Discord from 'discord.js'
+
 import { response } from 'discord/commands'
+import Buttons from 'discord/buttons'
+import Modals from 'discord/modals'
+import StringSelectMenus from 'discord/stringSelectMenus'
 
 
 
@@ -21,9 +25,11 @@ export function Button(interaction: Discord.ButtonInteraction) {
     const ext = interaction.customId.split('.')[0]
     const args = interaction.customId.split('.').slice(1)
 
-    return import(`discord/buttons/${ext}/index.ts`)
-        .then(iModule => iModule.default(interaction, args))
-        .catch(() => interaction.reply({ content: `No ButtonID matching \`${ext}\` was found.`, ephemeral: true }))
+    try {
+        return Buttons[ext](interaction, args)
+    } catch {
+        return interaction.reply({ content: `No ButtonID matching \`${ext}\` was found.`, ephemeral: true })
+    }
 }
 
 
@@ -31,9 +37,11 @@ export function ModalSubmit(interaction: Discord.ModalSubmitInteraction) {
     const ext = interaction.customId.split('.')[0]
     const args = interaction.customId.split('.').slice(1)
 
-    return import(`discord/modals/${ext}/index.ts`)
-        .then(iModule => iModule.default(interaction, args))
-        .catch(() => interaction.reply({ content: `No ModalSubmitID matching \`${ext}\` was found.`, ephemeral: true }))
+    try {
+        return Modals[ext](interaction, args)
+    } catch {
+        return interaction.reply({ content: `No ModalSubmitID matching \`${ext}\` was found.`, ephemeral: true })
+    }
 }
 
 
@@ -44,7 +52,9 @@ export function StringSelectMenu(interaction: Discord.StringSelectMenuInteractio
 
     if (!channel) return interaction.reply({ content: `This interaction is not valid in this context.`, ephemeral: true })
 
-    return import(`discord/stringSelectMenus/${ext}/index.ts`)
-        .then(iModule => iModule.default(interaction, args))
-        .catch(() => interaction.reply({ content: `No StringSelectMenu matching \`${ext}\` was found.`, ephemeral: true }))
+    try {
+        return StringSelectMenus[ext](interaction, args)
+    } catch {
+        return interaction.reply({ content: `No StringSelectMenu matching \`${ext}\` was found.`, ephemeral: true })
+    }
 }
