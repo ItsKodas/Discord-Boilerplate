@@ -18,8 +18,8 @@ This repository contains a Discord bot boilerplate built using Deno and the `dis
 
 1. Clone the repository:
     ```sh
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/ItsKodas/Discord-Boilerplate.git
+    cd Discord-Boilerplate
     ```
 
 2. Install Deno:
@@ -64,7 +64,7 @@ Commands are defined in the [commands](http://_vscodecontentref_/3) directory. E
 ### Adding a New Command
 
 1. Create a new directory for your command in the [commands](http://_vscodecontentref_/6) directory.
-2. Create an [index.ts](http://_vscodecontentref_/7) file in your command directory with the following structure:
+2. Create an `index.ts` file in your command directory with the following structure:
     ```ts
     import Discord from 'discord.js'
 
@@ -79,7 +79,7 @@ Commands are defined in the [commands](http://_vscodecontentref_/3) directory. E
     }
     ```
 
-3. Import and add your command to the [index.ts](http://_vscodecontentref_/8) file:
+3. Import and add your command to the [index.ts](http://_vscodecontentref_/7) file:
     ```ts
     import yourCommand from './your-command/index.ts'
 
@@ -98,12 +98,12 @@ Commands are defined in the [commands](http://_vscodecontentref_/3) directory. E
 
 ## Events
 
-Events are defined in the [events](http://_vscodecontentref_/9) directory. Each event is a module that exports a default function.
+Events are defined in the [events](http://_vscodecontentref_/8) directory. Each event is a module that exports a default function.
 
 ### Adding a New Event
 
-1. Create a new directory for your event in the [events](http://_vscodecontentref_/10) directory.
-2. Create an [index.ts](http://_vscodecontentref_/11) file in your event directory with the following structure:
+1. Create a new directory for your event in the [events](http://_vscodecontentref_/9) directory.
+2. Create an `index.ts` file in your event directory with the following structure:
     ```ts
     import Discord from 'discord.js'
 
@@ -112,7 +112,7 @@ Events are defined in the [events](http://_vscodecontentref_/9) directory. Each 
     }
     ```
 
-3. Import and add your event to the [index.ts](http://_vscodecontentref_/12) file:
+3. Import and add your event to the [index.ts](http://_vscodecontentref_/10) file:
     ```ts
     import yourEvent from './your-event/index.ts'
 
@@ -126,13 +126,13 @@ Events are defined in the [events](http://_vscodecontentref_/9) directory. Each 
 
 ## Interactions
 
-Interactions are defined in the [interactions](http://_vscodecontentref_/13) directory. The bot supports different types of interactions: buttons, modals, and string select menus.
+Interactions are defined in the [interactions](http://_vscodecontentref_/11) directory. The bot supports different types of interactions: buttons, modals, and string select menus.
 
 ### Adding a New Interaction
 
-1. Create a new directory for your interaction type (e.g., buttons) in the [interactions](http://_vscodecontentref_/14) directory.
+1. Create a new directory for your interaction type (e.g., buttons) in the [interactions](http://_vscodecontentref_/12) directory.
 2. Create a new directory for your interaction in the interaction type directory.
-3. Create an [index.ts](http://_vscodecontentref_/15) file in your interaction directory with the following structure:
+3. Create an `index.ts` file in your interaction directory with the following structure:
     ```ts
     import Discord from 'discord.js'
 
@@ -141,7 +141,7 @@ Interactions are defined in the [interactions](http://_vscodecontentref_/13) dir
     }
     ```
 
-4. Import and add your interaction to the corresponding interaction type index file (e.g., app/interactions/buttons/index.ts):
+4. Import and add your interaction to the corresponding interaction type index file (e.g., [app/interactions/buttons/index.ts](http://_vscodecontentref_/13)):
     ```ts
     import yourInteraction from './your-interaction/index.ts'
 
@@ -155,19 +155,19 @@ Interactions are defined in the [interactions](http://_vscodecontentref_/13) dir
 
 ## Modules
 
-Modules are defined in the [modules](http://_vscodecontentref_/16) directory. Each module is a function that takes the Discord client as a parameter.
+Modules are defined in the [modules](http://_vscodecontentref_/14) directory. Each module is a function that takes the Discord client as a parameter.
 
 ### Adding a New Module
 
-1. Create a new directory for your module in the [modules](http://_vscodecontentref_/17) directory.
-2. Create an [index.ts](http://_vscodecontentref_/18) file in your module directory with the following structure:
+1. Create a new directory for your module in the [modules](http://_vscodecontentref_/15) directory.
+2. Create an `index.ts` file in your module directory with the following structure:
     ```ts
     export default function yourModule(client: Discord.Client) {
         // Your module logic
     }
     ```
 
-3. Import and add your module to the [index.ts](http://_vscodecontentref_/19) file:
+3. Import and add your module to the [index.ts](http://_vscodecontentref_/16) file:
     ```ts
     import yourModule from './your-module/index.ts'
 
@@ -181,7 +181,7 @@ Modules are defined in the [modules](http://_vscodecontentref_/16) directory. Ea
 
 ## Development
 
-To debug the bot, use the provided VS Code launch configuration. Open the [launch.json](http://_vscodecontentref_/20) file and adjust the `program` path if necessary.
+To debug the bot, use the provided VS Code launch configuration. Open the [launch.json](http://_vscodecontentref_/17) file and adjust the `program` path if necessary.
 
 ## License
 
