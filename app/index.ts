@@ -1,9 +1,9 @@
 import config from 'config'
 import Discord from 'discord.js'
-import fs from 'node:fs'
 
 import Colors from 'lib/colors.ts'
 
+import Events from 'discord/events'
 import Modules from 'discord/modules'
 import ready from './ready.ts'
 import * as Handle from './handleInteractions.ts'
@@ -40,9 +40,11 @@ client.on('interactionCreate', interaction => {
 
 const originalEmit = client.emit.bind(client)
 client.emit = function <K extends keyof Discord.ClientEvents>(event: K, ...args: Discord.ClientEvents[K]) {
-    import(`discord/events/${event}/index.ts`)
-        .then(eModule => eModule.default(...args))
-        .catch(() => { })
+    try {
+        Events[event](...args)
+    } catch {
+        // No event handler
+    }
 
     return originalEmit(event, ...args)
 }

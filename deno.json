@@ -21,13 +21,14 @@
         "mongo": "./lib/mongo.ts",
 
         "lib/": "./lib/",
+        "modals/": "./app/modals/",
 
         "discord/modules": "./app/modules/index.ts",
         "discord/events": "./app/events/index.ts",
 
         "discord/commands": "./app/commands/index.ts",
         "discord/buttons": "./app/interactions/buttons/index.ts",
-        "discord/modals": "./app/interactions/modals/index.ts",
+        "discord/modals/": "./app/interactions/modals/",
         "discord/stringSelectMenus": "./app/interactions/stringSelectMenus/index.ts"
     }
 }

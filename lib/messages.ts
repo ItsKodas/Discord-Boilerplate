@@ -6,7 +6,7 @@ import Colors from 'lib/colors.ts'
 
 
 interface MessageOptions {
-    title: string
+    title?: string
     description?: string
     color?: keyof typeof Colors
     components?: Discord.APIActionRowComponent<Discord.APIMessageActionRowComponent>[]
@@ -21,7 +21,7 @@ export async function reply(interaction: Discord.Interaction, options: MessageOp
         ephemeral: options.ephemeral || false,
         embeds: [
             new Discord.EmbedBuilder()
-                .setTitle(options.title)
+                .setTitle(options.title || null)
                 .setColor(options.color ? Colors[options.color] : null)
                 .setDescription(options.description || null)
         ],
@@ -37,7 +37,7 @@ export async function send(options: MessageOptions, channel?: Discord.TextBasedC
     return await notifyChannel.send({
         embeds: [
             new Discord.EmbedBuilder()
-                .setTitle(options.title)
+                .setTitle(options.title || null)
                 .setColor(options.color ? Colors[options.color] : null)
                 .setDescription(options.description || null)
         ],
