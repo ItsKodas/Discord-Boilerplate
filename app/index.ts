@@ -1,18 +1,12 @@
 import config from 'config'
-import Discord, { Collection } from 'discord.js'
+import Discord from 'discord.js'
+import fs from 'node:fs'
 
 import Colors from 'lib/colors.ts'
 
+import Modules from 'discord/modules'
 import ready from './ready.ts'
-import messageCreate from './messageCreate.ts'
-import guildMemberAdd from './guildMemberAdd.ts'
-import guildMemberRemove from './guildMemberRemove.ts'
-import channelUpdate from './channelUpdate.ts'
-import messageUpdate from './messageUpdate.ts'
-import voiceStateUpdate from './voiceStateUpdate.ts'
-
 import * as Handle from './handleInteractions.ts'
-
 
 
 const client = new Discord.Client({
@@ -37,25 +31,36 @@ client.login(config.discord.token).catch(console.error)
 
 client.on('ready', ready)
 
-client.on('messageCreate', messageCreate)
-client.on('messageUpdate', messageUpdate)
-client.on('channelUpdate', channelUpdate)
-client.on('guildMemberAdd', guildMemberAdd)
-client.on('guildMemberRemove', guildMemberRemove)
-client.on('voiceStateUpdate', voiceStateUpdate)
-
 client.on('interactionCreate', interaction => {
     if (interaction.isChatInputCommand()) return Handle.Commands(interaction)
+    if (interaction.isButton()) return Handle.Button(interaction)
     if (interaction.isModalSubmit()) return Handle.ModalSubmit(interaction)
     if (interaction.isStringSelectMenu()) return Handle.StringSelectMenu(interaction)
-    if (interaction.isButton()) return Handle.Button(interaction)
 })
 
+const originalEmit = client.emit.bind(client)
+client.emit = function <K extends keyof Discord.ClientEvents>(event: K, ...args: Discord.ClientEvents[K]) {
+    import(`discord/events/${event}/index.ts`)
+        .then(eModule => eModule.default(...args))
+        .catch(() => { })
+
+    return originalEmit(event, ...args)
+}
+
+for (const mod in Modules) {
+    try {
+        Modules[mod](client)
+        console.log(`Successfully mounted "${mod}"`)
+        continue
+    } catch {
+        console.warn(`Failed to mount "${mod}", skipping...`)
+        continue
+    }
+}
 
 
 
 const DiscordController = {
-
     config: config.discord,
     colors: Colors,
 
@@ -70,7 +75,6 @@ const DiscordController = {
         const guild = client.guilds.cache.get(config.discord.guild)
         return guild?.members.cache.get(id) as Discord.GuildMember
     },
-
 }
 
 export default DiscordController

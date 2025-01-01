@@ -14,7 +14,8 @@
                 "--allow-net",
                 "--allow-env",
                 "--allow-read",
-                "--allow-write" // Adjust permissions as needed
+                "--allow-write",
+                "--allow-sys" // Adjust permissions as needed
             ],
             "attachSimplePort": 9229,
             "outputCapture": "std"

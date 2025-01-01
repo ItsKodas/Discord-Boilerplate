@@ -1,6 +1,6 @@
 import App from 'app'
 
-import Discord, { underline } from 'discord.js'
+import Discord from 'discord.js'
 
 
 

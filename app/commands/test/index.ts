@@ -1,7 +1,8 @@
 import Discord from 'discord.js'
 
 
-import ping from './ping.ts'
+import buttons from './buttons.ts'
+import menus from './menus.ts'
 
 
 
@@ -9,11 +10,12 @@ export default {
     data: new Discord.SlashCommandBuilder()
         .setName('test')
         .setDescription('Test Commands')
-        .setDMPermission(false)
 
-        .addSubcommand(ping.data),
+        .addSubcommand(buttons.data)
+        .addSubcommand(menus.data),
 
     subcommands: {
-        ping,
+        buttons,
+        menus
     }
 }

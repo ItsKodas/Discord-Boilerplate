@@ -1,16 +1,7 @@
-//? Dependencies
-
 import { resolveColor } from 'discord.js'
 
 
-//? Type
-
-export type Color = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark' | 'grey' | 'random'
-
-
-//? Colors
-
-export default {
+const Colors = {
     primary: resolveColor('#007bff'),    // Blue
     secondary: resolveColor('#ff6f32'),  // Orange
     success: resolveColor('#28a745'),    // Green
@@ -21,5 +12,8 @@ export default {
     light: resolveColor('#f8f9fa'),      // White
     dark: resolveColor('#343a40'),       // Black
     grey: resolveColor('#6c757d'),       // Grey
-    random: () => resolveColor(`#${(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')}`)
 }
+
+export const random = () => resolveColor(`#${(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')}`)
+
+export default Colors

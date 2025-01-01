@@ -9,6 +9,7 @@ client.on('connectionReady', () => console.info(`MongoDB Connected with "${confi
 
 
 const DbInterface = {
+    test: () => client.db(config.mongo.db).stats(),
     stats: () => client.db(config.mongo.db).stats().then(console.table).catch(console.error),
 
     // users: client.db(config.mongo.db).collection('users') as MongoCollection,
