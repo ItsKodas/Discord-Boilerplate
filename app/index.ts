@@ -36,6 +36,7 @@ client.on('interactionCreate', interaction => {
     if (interaction.isButton()) return Handle.Button(interaction)
     if (interaction.isModalSubmit()) return Handle.ModalSubmit(interaction)
     if (interaction.isStringSelectMenu()) return Handle.StringSelectMenu(interaction)
+    if (interaction.isAutocomplete()) return Handle.Autocomplete(interaction)
 })
 
 const originalEmit = client.emit.bind(client)

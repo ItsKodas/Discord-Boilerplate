@@ -4,6 +4,7 @@ import { response } from 'discord/commands'
 import Buttons from 'discord/buttons'
 import Modals from 'discord/modals'
 import StringSelectMenus from 'discord/stringSelectMenus'
+import Autocompletes from 'discord/autocompletes'
 
 
 
@@ -56,5 +57,17 @@ export function StringSelectMenu(interaction: Discord.StringSelectMenuInteractio
         return StringSelectMenus[ext](interaction, args)
     } catch {
         return interaction.reply({ content: `No StringSelectMenu matching \`${ext}\` was found.`, ephemeral: true })
+    }
+}
+
+
+export function Autocomplete(interaction: Discord.AutocompleteInteraction) {
+    const ext = interaction.commandName.split('.')[0]
+    const args = interaction.commandName.split('.').slice(1)
+
+    try {
+        return Autocompletes[ext](interaction, args)
+    } catch {
+        return console.warn(`No Autocomplete matching \`${ext}\` was found.`)
     }
 }
