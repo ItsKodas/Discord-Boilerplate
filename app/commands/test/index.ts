@@ -1,21 +1,18 @@
 import Discord from 'discord.js'
 
-
+import group from './group/index.ts'
 import buttons from './buttons.ts'
 import menus from './menus.ts'
 
 
-
 export default {
-    data: new Discord.SlashCommandBuilder()
-        .setName('test')
-        .setDescription('Test Commands')
+    name: 'test',
+    description: 'Test Commands',
+    type: Discord.ApplicationCommandType.ChatInput,
 
-        .addSubcommand(buttons.data)
-        .addSubcommand(menus.data),
-
-    subcommands: {
+    options: [
+        group,
         buttons,
         menus
-    }
-}
+    ]
+} as ChatCommand

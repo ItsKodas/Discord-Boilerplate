@@ -1,13 +1,12 @@
-import Discord from 'discord.js'
-
+import Discord, { ApplicationCommandOptionType } from 'discord.js'
 
 
 export default {
-    data: new Discord.SlashCommandSubcommandBuilder()
-        .setName('menus')
-        .setDescription('Test Menus'),
+    name: 'menus',
+    description: 'Test Menus',
+    type: ApplicationCommandOptionType.Subcommand,
 
-    async execute(interaction: Discord.ChatInputCommandInteraction) {
+    execute(interaction) {
         interaction.reply({
             ephemeral: true,
             components: [
@@ -22,4 +21,5 @@ export default {
             ]
         })
     }
-}
+
+} as ChatSubcommand

@@ -3,18 +3,15 @@ import test from './test/index.ts'
 import namesearch from './namesearch/index.ts'
 
 
-
 const commands = [
-    ping.data,
-    test.data,
-    namesearch.data,
-]
-
-const response: { [key: string]: any } = {
     ping,
     test,
-    namesearch,
-}
+    namesearch
+]
+
+export default commands
 
 
-export { commands, response }
+import fs from 'node:fs'
+
+fs.writeFileSync('./commands.json', JSON.stringify(commands, null, '\t'))

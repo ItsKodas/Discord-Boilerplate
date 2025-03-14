@@ -1,13 +1,12 @@
-import Discord from 'discord.js'
-
+import Discord, { ApplicationCommandType, ApplicationCommandOptionType } from 'discord.js'
 
 
 export default {
-    data: new Discord.SlashCommandBuilder()
-        .setName('ping')
-        .setDescription('Test Ping'),
+    name: 'ping',
+    description: 'Test Ping',
+    type: ApplicationCommandType.ChatInput,
 
-    async execute(interaction: Discord.ChatInputCommandInteraction) {
+    execute(interaction) {
         interaction.reply({ content: `Responded in ${interaction.client.ws.ping}ms`, ephemeral: true })
     }
-}
+} as ChatCommand
