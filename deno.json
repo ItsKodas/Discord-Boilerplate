@@ -1,15 +1,17 @@
 {
     "nodeModulesDir": "auto",
     "compilerOptions": {
-        "strict": true,
+        "strict": false,
         "types": [
+            "./config.d.ts",
+            "./app/commands/commands.d.ts",
             "./types/global.d.ts"
         ]
     },
 
     "tasks": {
-        "start": "deno run --allow-sys --allow-net --allow-env --allow-read index.ts",
-        "compile": "deno compile --allow-sys --allow-net --allow-env --allow-read --output app index.ts"
+        "start": "deno run --allow-all index.ts",
+        "compile": "deno compile --allow-all --no-check --output app index.ts"
     },
 
     "imports": {

@@ -19,6 +19,7 @@ export default async function (client: Discord.Client) {
             description: c.description,
             subcommands: c.options?.map(o => o.name).join(', ') || 'N/A',
             dmPermission: c.dmPermission,
+            type: c.type
         })))
 
         fs.writeFileSync('./commands.json', JSON.stringify(Commands, null, '\t'))
