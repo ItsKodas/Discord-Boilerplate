@@ -4,7 +4,6 @@ import ChatCommands from 'discord/commands'
 import Buttons from 'discord/buttons'
 import Modals from 'discord/modals'
 import StringSelectMenus from 'discord/stringSelectMenus'
-import Autocompletes from 'discord/autocompletes'
 
 
 
